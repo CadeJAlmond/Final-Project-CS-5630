@@ -1,5 +1,12 @@
-const width = 725
+const width  = 725
 const height = 450
+
+const minAttackCount = 0
+const maxAttackCount = d3.max(Object.values(countryAttackCount))
+
+const mapColors = d3.scaleLinear()
+                    .domain([minAttackCount, maxAttackCount])
+                    .range(['#fff1f1', '#c92a2a'])
 
 // The svg
 var svg = d3.select("#world_graph")
@@ -22,7 +29,12 @@ d3.json("https://raw.githubusercontent.com/"
         .selectAll("path")
         .data(data.features)
         .enter().append("path")
-        .attr("fill", "#69b3a2")
+        .attr("fill", (data, index) => {
+            let attackCount = countryAttackCount[data.properties.name]
+            if(!attackCount)
+                attackCount = 0
+            return mapColors(attackCount)
+        })
         .attr("d", d3.geoPath()
             .projection(projection)
         )

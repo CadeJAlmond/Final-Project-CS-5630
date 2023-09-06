@@ -8,18 +8,29 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
         <header>
             <h1>Global Terrorism</h1>
             <h3>In the 21st Century</h3>
-
             <p>
                 Text Description
             </p>
         </header>    
-        <svg id="world_graph"></svg>
+        <div class="hero-section">
+            <svg id="world_graph"></svg>
+            <div>
+                <h3>World Map</h3>
+                <p>
+                    Here is what terrorism looks like around the world.
+                </p>
+            </div>
+        </div>
     </main>
     <section class="">
 
@@ -35,7 +46,7 @@
 
     </section>
     
-
-    <script src="./Graphs/mapGraph.js"></script>
+    <script type="text/javascript" src="./Data/worldData.js"></script>
+    <script type="text/javascript" src="./Graphs/mapGraph.js"></script>
 </body>
 </html>
