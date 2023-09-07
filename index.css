@@ -41,5 +41,16 @@ p {
    border-radius: 50%;
    translate: scale(-50%);
    margin-top: 8rem;
-   box-shadow: 0 0.35rem 1.25rem 0 rgba(0, 0, 0, 0.1);
+   box-shadow: 0 0.45rem 1.25rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.blue-container {
+    background: #062542;
+    padding: 2.5rem;
+    height: 17rem;
+    border-radius: 1rem;
+}
+
+.blue-container h3, p {
+    color: #fff;
 }

@@ -38,7 +38,7 @@ d3.json("https://raw.githubusercontent.com/"
         .attr("d", d3.geoPath()
             .projection(projection)
         )
-        .style("stroke", "#fff")
+        .style("stroke", "#cbd5e1")
         .on("click", (d, i) => {
             const countryName = d.properties.name
             console.log(countryName)
