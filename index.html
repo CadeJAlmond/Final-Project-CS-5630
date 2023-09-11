@@ -23,7 +23,10 @@
             </p>
         </header>    
         <div class="hero-section">
-            <svg id="world_graph"></svg>
+            <svg id="world_graph">
+            </svg>
+            <svg id="legend"></svg>
+
             <div class="blue-container">
                 <h3>World Map</h3>
                 <p>
@@ -35,11 +38,17 @@
     <section class="">
 
     </section>
+
+    <section class="waffle_charts">
+        <svg id="graph_waf_t_targets"></svg>
+        <svg id="graph_waf_t_weapons"></svg>
+        <svg id="graph_waf_t_atk_methods"></svg>
+    </section>
     
     <section class="pie_charts">
-        <svg id="graph_t_targets"></svg>
-        <svg id="graph_t_weapons"></svg>
-        <svg id="graph_t_atk_methods"></svg>
+        <svg id="graph_pie_t_targets"></svg>
+        <svg id="graph_pie_t_weapons"></svg>
+        <svg id="graph_pie_t_atk_methods"></svg>
     </section>
 
     <section class="">
@@ -47,9 +56,12 @@
     </section>
     <!-- LOAD IN DATA -->
     <script type="text/javascript" src="./Data/worldData.js"></script>
+    <script type="text/javascript" src="./Data/waffleData.js"></script>
+    <script type="text/javascript" src="./Data/weaponStackBarData.js"></script>
 
     <!-- D3 VISUALIZATIONS -->
     <script type="text/javascript" src="./Graphs/mapGraph.js"></script>
+    <script type="text/javascript" src="./Graphs/waffleCharts.js"></script>
     <script type="text/javascript" src="./Graphs/pieCharts.js"></script>
 </body>
 </html>

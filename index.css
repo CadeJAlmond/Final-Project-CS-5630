@@ -28,6 +28,7 @@ h3 {
 }
 
 p {
+    color: gray;
     font-size: 2rem;
 }
 
@@ -38,10 +39,32 @@ p {
 }
 
 #world_graph {
+   position: relative;
    border-radius: 50%;
    translate: scale(-50%);
    margin-top: 8rem;
-   box-shadow: 0 0.45rem 1.25rem 0 rgba(0, 0, 0, 0.1);
+   background-color: rgba(221, 230, 246, 0.1);
+   box-shadow: 0 0.0 1rem 0.025rem rgba(134, 43, 43, 0.075);
+}
+
+#legend {
+    position: absolute;
+    translate: -55px 165px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 2rem;
+    z-index: 2;
+}
+
+#legend rect {
+    color: black;
+}
+
+#legend g {
+    cursor: pointer;
+}
+
+#legend g:hover {
+    text-decoration: underline;
 }
 
 .blue-container {
@@ -51,6 +74,16 @@ p {
     border-radius: 1rem;
 }
 
-.blue-container h3, p {
+.blue-container h3, .blue-container p {
     color: #fff;
+}
+
+.waffle_charts {
+    display: flex;
+    justify-content: center;
+    gap: 12.5vw;
+}
+
+.waffle_charts svg {
+    max-width: 250px;
 }
