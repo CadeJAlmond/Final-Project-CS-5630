@@ -1,5 +1,5 @@
 
-const drawPies = () => {
+const drawPies = (region = "WORLD") => {
     const width = 235,
         height = 235
 
@@ -18,17 +18,19 @@ const drawPies = () => {
     const charts = [svgVictims, svgWeapons, svgAttacks]
 
     let data = getPieData()
-    // Pull out US data first
-    const [ US_VIC_DATA, US_ATK_DATA, US_WPN_DATA ] = data["US"]
-    data = [US_VIC_DATA, US_ATK_DATA, US_WPN_DATA]
+    
+    const [ VIC_DATA, ATK_DATA, WPN_DATA ] = data[region]
+    let pieData = [VIC_DATA, ATK_DATA, WPN_DATA]
 
     for(let i =0; i < 3; i++) {
         let chart = charts[i],
             radius = (width, height) / 2,
             g = chart.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-        var color = d3.scaleOrdinal(['#9696ff','#7d7dff', "#6363FF", '#4a4aff']);
         
+        const mapColors = d3.scaleLinear()
+            .domain([0, d3.max(pieData[i])])
+            .range(["#fff9f9", "#9b0013"])
+
         // Generate the pie
         var pie = d3.pie();
 
@@ -38,15 +40,18 @@ const drawPies = () => {
             .outerRadius(radius);
 
         //Generate groups
-        g.selectAll()
-            .data(pie(data[i]))
-            .enter()
-            .append("g")
-            .append("path")
-            .attr("fill", function (d, i) {
-                return color(i);
-            })
-            .attr("d", arc);
+        g.selectAll('g')
+            .data(pie(pieData[i]))
+            .join(
+                enter => enter.append("g")
+                    .append("path")
+                    .attr("fill", function (d, i) {
+                        return mapColors(d.value);
+                    })
+                    .attr("d", arc)
+                    .attr('stroke', "#4d0009"),
+                exit => exit.remove()
+            )
     }
 }
 

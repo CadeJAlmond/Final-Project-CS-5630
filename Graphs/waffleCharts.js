@@ -1,5 +1,4 @@
-
-const drawWaffles = () => {
+const drawWaffles = (region = "WORLD") => {
     const width  = 190,
         height = 235
 
@@ -15,13 +14,13 @@ const drawWaffles = () => {
         .attr("width", width)
         .attr("height", height)
 
-    const wafCharts = [svgVictims, svgWeapons, svgAttacks],
-        wafData = [waffleVictimCivilians, waffleWeaponsExplosives, waffleAttackBombings]
+    const wafData = getWaffleData()[region]
+    
+    const wafCharts = [svgVictims, svgWeapons, svgAttacks]
 
     const drawChart = (index) => {
-        const value  = wafData[index]
+        const value = wafData[index]
         const chart  = wafCharts[index]
-        
         const chartSize = ( () => { 
             let d = []
             for(let i = 0; i < 100; i++) 
@@ -29,6 +28,7 @@ const drawWaffles = () => {
             return d
         })
 
+        chart.selectAll('circle').remove()
         // Draw circles
         chart.selectAll('circle')
             .data(chartSize())
@@ -43,10 +43,10 @@ const drawWaffles = () => {
             })
             .attr("r", ".65em")
             .attr('fill', (d, i) => {
-                if (i > 100 - value) return "#9b0013"
+                if (i >= 100 - value ) return "#9b0013"
                 return "#fff9f9"
             })
-            .style("stroke", "gray")
+            .style("stroke", "#4d0009")
 
     }
 

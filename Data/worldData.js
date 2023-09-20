@@ -37,9 +37,9 @@ var countryAttackCount = {
     "China" : 137 ,"Liberia" : 13 ,"Republic of the Congo" : 21 ,"Mali" : 533 ,
     "Germany" : 204 ,"Yemen" : 3240 ,"Rwanda" : 31 ,"Sierra Leone" : 28 ,
     "Cameroon" : 313 ,"Cuba" : 1 ,"Croatia" : 11 ,"Georgia" : 112 ,
-    "Azerbaijan" : 18 ,"Madagascar" : 13 ,"Lithuania" : 0 ,"Burundi" : 365 ,
+    "Azerbaijan": 18, "Madagascar": 13,"Lithuania" : 0 ,"Burundi" : 365 ,
     "Ukraine" : 1683 ,"Moldova" : 5 ,"Armenia" : 11 ,"Russia" : 1866 ,
-    "Ivory Coast" : 59 ,"Kazakhstan" : 19 ,"Antigua and Barbuda" : 0 ,"Bosnia-Herzegovina" : 33 ,
+    "Ivory Coast" : 59 ,"Kazakhstan" : 19 ,"Antigua and Barbuda" : 0 ,"Bosnia and Herzegovina" : 33 ,
     "Equatorial Guinea" : 1 ,"Tajikistan" : 29 ,"Malawi" : 2 ,"Uzbekistan" : 10 ,
     "Latvia" : 5 ,"Estonia" : 4 ,"Vietnam" : 6 , "Comoros" : 0 ,
     "Benin" : 1 ,"Slovak Republic" : 2 ,"Macedonia" : 106 ,"Wallis and Futuna" : 0 ,
@@ -48,5 +48,5 @@ var countryAttackCount = {
     "Macau" : 0 ,"Kyrgyzstan" : 27 ,"Vanuatu" : 0 ,"Democratic Republic of the Congo" : 767 ,
     "Kosovo" : 157 ,"Solomon Islands" : 3 ,"East Timor" : 10 ,"St. Lucia" : 1 ,
     "Guinea-Bissau" : 9 ,"Montenegro" : 5 ,"International" : 1 ,"Turkmenistan" : 2 ,
-    "Serbia-Montenegro" : 11 ,"Bhutan" : 6 ,"Serbia" : 12 ,"South Sudan" : 225
+    "Serbia-Montenegro": 11, "Bhutan": 6,"Republic of Serbia" : 12 ,"South Sudan" : 225
 }

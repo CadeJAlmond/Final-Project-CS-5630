@@ -1,4 +1,10 @@
-let selectedLegendIndex = -1;
+var selectedLegendIndex = -1;
+var selectedRegion = ""
+
+const redrawChartsByRegion = () => {
+    drawPies(selectedRegion)
+    drawWaffles(selectedRegion)
+}
 
 const drawMap = () => {
     const width  = 625
@@ -23,14 +29,16 @@ const drawMap = () => {
 
     // Display the contents of the map
     const displayProjection = (data) => {
-        console.log("DRAWED THE MAP ! CHECK THE SELECTED LEGEND VALUE", selectedLegendIndex)
+        console.log(data)
         // Draw the map
         svg.append("g")
             .selectAll("path")
             .data(data.features)
-            .enter().append("path")
+            .enter()
+            .append("path")
             .attr("fill", (data, index) => {
                 let attackCount = countryAttackCount[data.properties.name]
+                const getRegions = getCountryToRegionData()
                 if (!attackCount)
                     attackCount = 0
                 return mapColors(attackCount)
@@ -39,9 +47,11 @@ const drawMap = () => {
                 .projection(projection)
             )
             .style("stroke", "#cbd5e1")
-            .on("click", (d, i) => {
+            .on("click", (_, d) => {
                 const countryName = d.properties.name
-                console.log(countryName, countryAttackCount[countryName])
+                selectedRegion = getCountryToRegionData()[countryName] 
+                redrawChartsByRegion()
+                console.log(countryName, countryAttackCount[countryName], selectedRegion)
             })
 
         drawLegend(data)
@@ -89,12 +99,12 @@ const drawMap = () => {
             .attr("x", function (d, i) { return 30 })
             .attr("y", (d, i) => i * 27.5 + 25)
             .attr("dy", ".35em")
-            .text(function (d) { return d; });
+            .text((d) => d);
     }
-
+    console.log("HELLO")
     // Load external data and boot
-    d3.json("https://raw.githubusercontent.com/" +
-        "janasayantan/datageojson/master/world.json", function (data) {
+    d3.json("https://raw.githubusercontent.com/"+
+            "janasayantan/datageojson/master/world.json").then( (data) => {
         displayProjection(data)
     })
 }
