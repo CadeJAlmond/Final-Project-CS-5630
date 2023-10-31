@@ -1,21 +1,39 @@
 var selectedLegendIndex = -1;
 var selectedRegion = ""
 
-const redrawChartsByRegion = () => {
+const redrawChartsByRegion = (selectedRegion = 'WORLD') => {
+    d3.select('#reset_region').text(selectedRegion)
     drawPies(selectedRegion)
     drawWaffles(selectedRegion)
 }
 
+const hideWorldMap = () => {
+    if (!d3.select('#world_graph').empty()) {
+        d3.select('#world_graph').selectAll('*').remove()
+    }    
+    d3.select('#legend').style('opacity', 0).lower()
+}
+
+const showWorldMap = () => {
+    drawMap()
+    d3.select("#world_graph").selectAll('*').raise()
+}
+
+/* @ brief
+    - This function is responsible for drawing a map of the world and
+    shading regions based on their levels of terrorism and a legend
+    for the map. 
+*/
 const drawMap = () => {
-    const width  = 625
-    const height = 425
+    const width  = 920
+    const height = 510
 
     const minAttackCount = 0
     const maxAttackCount = d3.max(Object.values(countryAttackCount))
 
     const mapColors = d3.scaleLinear()
                         .domain([minAttackCount, maxAttackCount])
-                        .range(["#fff9f9","#9b0013"])
+                        .range(["#f9f8f9","#9b0013"])
 
     let svg = d3.select("#world_graph")
                 .attr("width", width)
@@ -25,11 +43,10 @@ const drawMap = () => {
         .scale(width / 1.95 / Math.PI)
         .rotate([0, 0])
         .center([0, 0])
-        .translate([width / 2, height / 1.65 - 30]);
+        .translate([width / 2, height / 1.95 + 40]);
 
     // Display the contents of the map
     const displayProjection = (data) => {
-        console.log(data)
         // Draw the map
         svg.append("g")
             .selectAll("path")
@@ -50,8 +67,8 @@ const drawMap = () => {
             .on("click", (_, d) => {
                 const countryName = d.properties.name
                 selectedRegion = getCountryToRegionData()[countryName] 
-                redrawChartsByRegion()
                 console.log(countryName, countryAttackCount[countryName], selectedRegion)
+                redrawChartsByRegion(selectedRegion)
             })
 
         drawLegend(data)
@@ -91,7 +108,7 @@ const drawMap = () => {
             .attr("cy", (d, i) => i * 27.5 + 25)
             .attr("r", ".55em")
             .attr('fill', (d, i) => mapColors(legendValues[i]))
-            .style("stroke", "gray")
+            .style("stroke", "#eae9eb")
 
         // Draw Legend Text
         legendLabels.append("text")
@@ -101,7 +118,6 @@ const drawMap = () => {
             .attr("dy", ".35em")
             .text((d) => d);
     }
-    console.log("HELLO")
     // Load external data and boot
     d3.json("https://raw.githubusercontent.com/"+
             "janasayantan/datageojson/master/world.json").then( (data) => {

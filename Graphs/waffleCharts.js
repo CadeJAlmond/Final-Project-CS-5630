@@ -1,7 +1,15 @@
+/*  @ brief : 
+    - This method is responsible for creating the waffle charts
+    and updating related text about terrorism. 
+    
+    @ params region : The region the user clicked on. The region
+    will be used to retrieve needed data for the graphs. 
+*/
 const drawWaffles = (region = "WORLD") => {
     const width  = 190,
         height = 235
 
+    /* Select all SVG's to be used for waffle charts */
     let svgVictims = d3.select("#graph_waf_t_targets")
         .attr("width", width)
         .attr("height", height)
@@ -14,13 +22,15 @@ const drawWaffles = (region = "WORLD") => {
         .attr("width", width)
         .attr("height", height)
 
+    const wafCharts = [svgVictims, svgWeapons, svgAttacks]
+    const textIds   = ['waf_vic_stats', 'waf_wpn_stats', 'waf_atk_stats']
+    /* Retrieve the data */
     const wafData = getWaffleData()[region]
     
-    const wafCharts = [svgVictims, svgWeapons, svgAttacks]
-
+    /* Draw a chart and it's data */
     const drawChart = (index) => {
-        const value = wafData[index]
-        const chart  = wafCharts[index]
+        const terror_value = wafData[index]
+        const cur_chart  = wafCharts[index]
         const chartSize = ( () => { 
             let d = []
             for(let i = 0; i < 100; i++) 
@@ -28,28 +38,41 @@ const drawWaffles = (region = "WORLD") => {
             return d
         })
 
-        chart.selectAll('circle').remove()
-        // Draw circles
-        chart.selectAll('circle')
+        // Clear any existing data points
+        cur_chart.selectAll('circle').remove()
+        // Draw Charts
+        cur_chart.selectAll('circle')
             .data(chartSize())
             .enter()
             .append('circle')
-            .attr("cx", function (d, i) {
-                return (i % 10) * 17 + 20
-            })
-            .attr("cy", function (d, i) {
-                return (Math.floor(i / 10)) * 17 + 20;
-
-            })
+            .attr('fill', '#fff9f9')
+            .attr("cx", (d, i) => (i % 10) * 17 + 20)
+            .attr("cy", (d, i) => (Math.floor(i / 10)) * 17 + 20)
             .attr("r", ".65em")
+            .style("stroke", "#4d0009")
+        // Animate graph
+            .transition()
+            .ease(d3.easeLinear)
+            .delay((d, i) =>{
+                return i * 16
+            })
+            .duration(950)
             .attr('fill', (d, i) => {
-                if (i >= 100 - value ) return "#9b0013"
+                if (i <= terror_value) return "#9b0013"
                 return "#fff9f9"
             })
-            .style("stroke", "#4d0009")
+            .style('opacity', (d, i) => {
+                if (i <= terror_value) return 1
+                return 0.6
+            })
 
+        d3.select("#" + textIds[index])
+            .select('span')
+            .style("color", "red")
+            .text(`${terror_value}% `);
     }
 
+    // Draw every chart
     for(let i = 0; i < wafCharts.length; i++)
         drawChart(i)
 }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Noto+Sans+NKo+Unjoined&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,51 +7,128 @@
 
 html {
     font-size: 62.5%;
-    font-family: 'Rubik';
 }
 
 body {
-    background-color: #f8f9fa;
+    background-color: #f9f8f9;
 }
 
 main {
-    width: 120rem;
-    margin: 5rem auto;
+    width: 100%;
+    margin: 0rem auto;
+}
+
+#toggleMaps {
+    justify-content: center;
+    display: flex;
+    gap: 25px;
+}
+
+/* Maybe make this look like regular text, but larger and red */
+#reset_region{
+    padding: 0px 5px;
+    translate: 0 -2rem;
+    margin-left: calc(50% - 62.5px);
+}
+
+button {
+    width: 125px;
+    height: 40px;
+    margin: 10px 0px;
+}
+
+main header {
+    display: flex;
+    justify-content: center;
+    gap: 4.5vw;
+    background-color: #7c0000;
+    background-image: linear-gradient(326deg, #810202 0%, #3e0000 74%);
+    height: 68vh;
+    margin-bottom: 100px;
+    padding-top: 11.5vh;
+}
+
+main header div {
+    transform: translateY(36px);
+}
+
+main header img {
+    max-width: 45vw;
+    height: 55vh;
+    border-radius: 16px;
+    background-size: cover;
+    box-shadow: 0 0 40px rgba(46, 19, 19, 0.74);
 }
 
 h1 {
-    font-size: 6.2rem;
+    color: #f1eaec;
+    font-family: "Noto Sans NKo Unjoined";
+    font-size: 4.45rem;
+}
+
+svg {
+    font-family: "Noto Sans NKo Unjoined";
 }
 
 h3 {
-    font-size: 2.75rem;
+    font-size: 2.0rem;
     line-height: 1.75;
-    color: #1864ab;
+    font-family: "Noto Sans NKo Unjoined";
+    color: #d3cbcd;
+    margin-bottom: 16px;
 }
 
 p {
+    font-family: 'Didact Gothic';
     color: gray;
     font-size: 2rem;
 }
 
 .hero-section {
+    position: relative;
+    gap: 5.25rem;
     display: flex;
-    align-items: center;
-    gap: 4.25rem;
+    flex-direction: column;
+    margin-top: -20px;
+    height: 810px;
+}
+
+.hero-section div {
+    height: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+.hero-section h3 {
+    /* font-family: 'Noto Sans'; */
+    font-family: 'Didact Gothic';
+    letter-spacing: 1.25px;
+    font-size: 3rem;
+    text-align: center;
+    left: calc(50% - (146px));
+    color: rgba(44, 38, 38, 1);
+    text-transform: uppercase;
 }
 
 #world_graph {
-   position: relative;
-   border-radius: 50%;
-   translate: scale(-50%);
-   margin-top: 8rem;
-   background-color: rgba(221, 230, 246, 0.1);
-   box-shadow: 0 0.0 1rem 0.025rem rgba(134, 43, 43, 0.075);
+   position: absolute;
+   left: calc(50% - 462px);
+   border-radius: 10%;
+   background-color: rgba(44, 38, 38, 0.005);
+   border: 2px solid rgba(44, 38, 38, 0.05);
+}
+
+#world_graph, #tree_map {
+    transform: translateY(200px);
+}
+
+#world_graph path:hover {
+    cursor:pointer;
 }
 
 #legend {
     position: absolute;
-    translate: -55px 165px;
+    translate: 215px 365px;
     background-color: rgba(255, 255, 255, 0.85);
     border-radius: 2rem;
     z-index: 2;
@@ -67,15 +146,17 @@ p {
     text-decoration: underline;
 }
 
-.blue-container {
-    background: #062542;
-    padding: 2.5rem;
-    height: 17rem;
-    border-radius: 1rem;
+.text-section h3 {
+    font-family: 'Didact Gothic';
+    letter-spacing: 1.25px;
+    font-size: 3rem;
+    text-align: center;
+    color: rgba(44, 38, 38, 1);
+    text-transform: uppercase;
 }
 
-.blue-container h3, .blue-container p {
-    color: #fff;
+.text-section p {
+    text-align: center;
 }
 
 .waffle_charts {
@@ -84,6 +165,47 @@ p {
     gap: 12.5vw;
 }
 
+.waffle_charts div {
+    width: 200px;
+}
+
+.waffle_charts div {
+    text-align: center;
+    text-anchor: middle;
+}
+
 .waffle_charts svg {
     max-width: 250px;
+    transform: rotate(-180deg)
+}
+
+#tree_map {
+    margin-top: -600px;
+    transform: translateY(-80px);
+    margin-left: calc(50% -  470px)
+}
+
+.pie_charts {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 6.25vw;
+}
+
+.pie_charts svg g path {
+    position: absolute;
+    z-index: -1;
+}
+
+.pie_charts svg .selected {
+    height: 200%;
+}
+
+.pie_charts svg g rect {
+    position: absolute;
+    z-index: 105;
+}
+
+.pie_charts svg g circle {
+    opacity: 0.8
 }

@@ -11,38 +11,59 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
         <header>
-            <h1>Global Terrorism</h1>
-            <h3>In the 21st Century</h3>
-            <p>
-                Text Description
-            </p>
+            <div>
+                <h1>Terrorism In The 21st</h1>
+                <h1>Century</h1>
+                <h3>Cade Almond, Alex Garcia, Martin</h3>
+                <p>
+                    Text Description
+                </p>
+            </div>
+            <img src="https://www.cnn.com/interactive/2021/09/us/9-11-photos-cnnphotos/media/images/s_A0AE79177AE22FEDB3174BE4CB5E6C1B34787C78A411A18BEEE28632C821036C_1631282686874_06.jpg">
         </header>    
         <div class="hero-section">
+            <div>
+                <h3>Global Terrorism</h3>
+                <p>This is what terrorism looks like across the globe.</p>
+                <p>Click on any country for more details about a region</p>
+                <div id="toggleMaps">
+                    <button id="worldMap">World Map </button>
+                    <button id="araeMap" >Area Map </button>
+                </div>
+            </div>
             <svg id="world_graph">
             </svg>
             <svg id="legend"></svg>
-
-            <div class="blue-container">
-                <h3>World Map</h3>
-                <p>
-                    Here is what terrorism looks like around the world.
-                </p>
-            </div>
         </div>
     </main>
-    <section class="">
 
+    <svg id="tree_map">
+    </svg>
+
+    <section class="text-section">
+        <button id="reset_region" title="Click to clear selected region">Across the world</button>
+        <h3>In Terrorist Attacks</h3>
+        <p>Some people are affected more than others, and</p>
+        <p>certain weapons and attacks are very common ...</p>
     </section>
 
     <section class="waffle_charts">
-        <svg id="graph_waf_t_targets"></svg>
-        <svg id="graph_waf_t_weapons"></svg>
-        <svg id="graph_waf_t_atk_methods"></svg>
+        <div>
+            <svg id="graph_waf_t_targets"></svg>
+            <p id="waf_vic_stats"><span></span> of targets are civilians and property</p>
+        </div>
+        <div>
+            <svg id="graph_waf_t_weapons"></svg>
+            <p id="waf_wpn_stats"><span></span>of weapons used are bombs</p>
+        </div>
+        <div>
+            <svg id="graph_waf_t_atk_methods"></svg>
+            <p id="waf_atk_stats"><span></span>of attacks are bombings</p>
+        </div>
     </section>
     
     <section class="pie_charts">
@@ -65,5 +86,7 @@
     <script type="text/javascript" src="./Graphs/mapGraph.js"></script>
     <script type="text/javascript" src="./Graphs/waffleCharts.js"></script>
     <script type="text/javascript" src="./Graphs/pieCharts.js"></script>
+    <script type="text/javascript" src="./Graphs/treeMap.js"></script>
+    <script type="text/javascript" src="./buttonEvents.js"></script>
 </body>
 </html>
